@@ -1,0 +1,54 @@
+
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Liste des Gamers
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h2 class="text-center mt-5 mb-3">{{user.username}}</h2>
+		<div class="card">
+			<div class="card-header">
+				<h1>Consulter utilisateur</h1>
+			</div>
+			<div class="card-body" style="overflow-x:auto;overflow-y:auto;height:400px;display:fixe">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Email</th>
+							<td>{{ user.email }}</td>
+						</tr>
+						<tr>
+							<th>Username</th>
+							<td>{{ user.username }}</td>
+						</tr>
+						<tr>
+							<th>Nom</th>
+							<td>{{ user.nom }}</td>
+						</tr>
+						<tr>
+							<th>Prenom</th>
+							<td>{{ user.prenom }}</td>
+						</tr>
+						<tr>
+							<th>Numero telephone</th>
+							<td>{{ user.numTel }}</td>
+						</tr>
+						<tr>
+							<th>Date_naissance</th>
+							<td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<a class="btn btn-outline-primary" href="{{ path('app_user_index') }}">back to list</a>
+
+				<a class="btn btn-outline-primary" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+
+				<a class="btn btn-outline-danger" style="color:white">{{ include('user/_delete_form.html.twig') }}</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+

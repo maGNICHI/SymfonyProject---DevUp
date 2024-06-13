@@ -1,0 +1,86 @@
+{% extends 'dashboard/index.html.twig' %}
+{% block body %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous"/>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="">
+					<div class="table-responsive">
+						<table id="#table" class="table project-list-table table-nowrap align-middle table-borderless">
+							<thead>
+								<tr>
+									
+									<th scope="col">Post title</th>
+									<th scope="col">Name</th>
+									<th scope="col">number of Comments</th>
+									<th scope="col">status</th>
+									<th scope="col" style="width: 200px;">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for post in listepost %}
+									<tr>
+										
+										<td>
+											<span class="badge badge-soft-success mb-0">{{post.title}}</span>
+										</td>
+										<td>{#{{post.user.username}}#}</td>
+										<td>{{post.comments|length }}</td>
+										<td>
+											{% if post.isActive == true %}
+												<span class="badge badge-success">Published</span>
+											{% else %}
+												<span class="badge badge-danger">Pending</span>
+											{% endif %}
+										</td>
+										<td>
+											<ul class="list-inline mb-0">
+												<li
+													class="list-inline-item">
+													<!-- Button trigger modal -->
+
+													<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+													<div class="buttons-preview">
+														{% if post.isactive %}
+															<a href="{{ path('is_active_post', {'id':post.id}) }}" class="btn btn-danger">Masquer</a>
+														{% else %}
+															<a href="{{ path('is_active_post', {'id':post.id}) }}" class="btn btn-warning">Publier</a>
+														{% endif %}
+													</div>
+													{# <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a> #}
+												</li>
+											</ul>
+										</td>
+										<td>
+											
+											    <a href="{{ path('app_posts_show', {'id': post.id}) }}">
+										            <i class="fa fa-eye" style="color:white;"></i>
+									            </a>
+												<a href="{{ path('app_post_remove', {'id':post.id}) }}" data-bs-toggle="tooltip" data-bs-placement="top"  title="Delete" class="px-2 text-danger">
+													<i class="bx bx-trash-alt font-size-18"></i>
+												</a>
+											
+
+											
+										</td>
+									</tr>
+								{% endfor %}
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,4 @@
+framework:
+    mailer:
+        dsn: 'gmail+smtp://prof.dev64@gmail.com:adddajyhgwkptevi@default'
+        message_bus:  false

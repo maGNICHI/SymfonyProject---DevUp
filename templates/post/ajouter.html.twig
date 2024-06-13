@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts Page!
+{% endblock %}
+
+{% block body %}
+	<div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">CREATE NEW POST</h3>
+		<hr/>
+		<br/>
+	</div>
+	<div class="container">
+		<div class="row vertical-gap">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-8">
+				<div class="card">
+					<h3>What's in your mind!</h3>
+					<hr/>
+					<div
+						class="content" style="margin-top:150px;">
+						<!-- app_post_list  bch eraja3ni lil page lawla   -->
+						{{ include('post/form.html.twig') }}
+					</div>
+				</div>
+				<!-- bch nady lil bloq el form mta3 twig form ely bch yet3awed kul chy    -->
+			</div>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+{% endblock %}
+

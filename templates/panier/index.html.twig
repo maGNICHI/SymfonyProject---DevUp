@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Panier{% endblock %}
+
+{% block body %}
+
+			<div class="container" style="padding-top: 250px;">
+				<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+				<h3 style="color: aliceblue;">Panier</h3>
+				<hr/>
+				<br/>
+			</div>
+	<br/>
+	<br/>
+	
+
+				<div class="container-fluid pt-5">
+					<div class="row px-xl-5">
+						<div class="col-lg-8 table-responsive mb-5">
+							<table class="table table-bordered text-center mb-0">
+								<thead>
+									<tr style="color:white">
+										<th>Des Produits</th>
+										<th>Prix</th>
+										<th>Quantité</th>
+										<th>total</th>
+										<th>Supprimer</th>
+
+									</tr>
+								</thead>
+								<tbody class="align-middle">
+									{% for element in elements %}
+										<tr style="color:white">
+											<td class="align-middle"><img src="{{ asset('uploads/images/' ~ element.produit.image) }}" alt="" style="width: 50px;">
+												{{element.produit.nom}}</td>
+											<td class="align-middle">{{element.produit.prix}} DT</td>
+											<td class="align-middle">
+												<div class="input-group quantity mx-auto" style="width: 100px;">
+
+													<div class="input-group-btn">
+														<a href="{{path("app_panier_supprimeQuantite", {'id': element.produit.id})}}" class="btn btn-sm  btn-minus" style="background-color: #ffbd27;">
+															<i class='fa fa-minus' style="color:black;"></i>
+														</a>
+													</div>
+													<input type="text" class="form-control form-control-sm secondary text-center" value="{{element.quantite}}">
+													<div class="input-group-btn">
+														<a href="{{path("app_panier_ajouter", {'id': element.produit.id})}}" class="btn btn-sm  btn-plus" style="background-color: #ffbd27;">
+															<i class='fa fa-plus' style="color:black;"></i>
+														</a>
+													</div>
+												</div>
+											</td>
+											<td class="align-middle">
+												{{element.produit.prix * element.quantite}}</td>
+											<td class="align-middle">
+										
+												<a href="{{path("app_panier_supprime_par_ligne", {'id': element.produit.id})}}" class="btn btn-sm  btn-plus" style="background-color: #ffbd27;">
+													<i class='fa fa-trash' style="color:black;"></i>
+												</a>
+											</td>
+
+										{% else %}
+											<tr>
+												<td colspan="6" class="text-center">Votre panier est vide</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</tbody>
+								<tfoot>
+									<tr style="color:white">
+										<td colspan="3">
+											<h5 style="color:white">Total:</h5>
+										</td>
+										<td class="text-end">{{ total }}
+											DT</td>
+										<td>
+											<a href="{{ path('app_panier_supp_tous') }}" class="btn btn-sm  btn-plus " style="background-color: #ffbd27;">
+												<i class='fa fa-trash' style="color:black;"></i>
+											</a>
+										</td>
+									</tr>
+								</tfoot>
+							</table>
+							<br>
+								<a href="{{ path('app_produittemplate') }}" class="btn " style="background-color:#ef1e14;color:#fff;">Ajouter d'autres produits</a>
+							
+						</div>
+						{% if total !=0 %}
+							<div class="col-lg-4">
+
+								<div class="card border-secondary mb-5">
+									<div class="card-header secondary border-0">
+										<h4 class="font-weight-semi-bold m-0">Total à payer
+										</h4>
+									</div>
+
+									<div class="card-footer border-secondary bg-transparent">
+										<div class="d-flex justify-content-between mt-2">
+
+											<h5 class="font-weight-bold">{{ total }}
+												DT</h5>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+				<!-- Cart End -->
+
+			</div>
+
+		{# </div>
+
+	</div> #}
+	<!-- Navbar End -->
+<br/>
+	<br/>
+    <br/>
+	<br/>
+    <br/>
+	<br/>
+
+{% endblock %}

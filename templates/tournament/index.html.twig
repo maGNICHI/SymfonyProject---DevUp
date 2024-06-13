@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tournament Page!{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">List Tournaments</h3>
+		<hr/>
+		<br/>
+	</div>
+	<div class="container">
+		<div class="row vertical-gap">
+			<div class="col-lg-8">
+				<!-- START: Now Playing -->
+				<div class="card">
+					<div class="image">
+						<img href="#" src="{{asset('img/games/league-of-legends-world-championship.jpg')}}">
+					</div>
+					<div class=content>
+						<h3 style="color: black;">Tournoi de LOL</h3>
+						<div class="container">
+							<div class="row">
+								<p>DIn publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the
+									visual form of a document or a typeface without relying on meaningful content.</p>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<p>Nombre de joueurs:5</p>
+								</div>
+								<div class="col-md-4">
+									<p><span class="fa fa-calendar"></span>Date: 10/02/2023</p>
+								</div>
+								<div class="col-md-2">
+									<a href="#" class='btn btn-xs disabled' style="background-color: #dd163b;color: aliceblue;">chat</a></li>
+								</div>
+								<div class="col-md-2">
+									<a href="#" class='btn btn-xs' style="background-color: #dd163b;color: aliceblue;">join</a></li>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END: Now Playing -->
+
+			</div>
+			<div class="col-lg-4 col-xs-12">
+				<div class="search-container flex">
+					<form action="/action_page.php">
+					  <input type="text" placeholder="Search.." name="search">
+					  <button type="submit"><i class="fa fa-search"></i></button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	
+	<br/>
+	<br/>
+{% endblock %}

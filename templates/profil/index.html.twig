@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+{% block title %}Profile Page{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">Profile</h3>
+		<hr/>
+		<br/>
+	</div>
+	<div class="container">
+		<div class="main-body">
+			<div class="row gutters-sm">
+				<div class="col-md-4 mb-3 NameP">
+					<div class="cardprofile">
+						<div class="cardprofile-body">
+							<div class="d-flex flex-column align-items-center text-center" style="padding-top:25px;">
+								<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+								<div class="mt-3">
+									<h4 style="color:white;">{{app.user.username}}</h4>
+									<p class="text-secondary mb-1">{{app.user.nom}} {{app.user.prenom}}</p>
+									<p class="text-muted font-size-sm">Role: Gamer</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="col-md-1"></div>
+				<div class="col-md-7 ProfilG">
+					<div class="cardprofile mb-3">
+                        {% for message in app.flashes('message') %}
+                            <div class="col-xs4 " style="background:#17a2b8;border-radius: 0.30rem;">
+                                <div class="p-3 my-2 rounded-2 success" style="color:white;">{{message}} !</div>
+                            </div>
+                        {% endfor %}
+						<div class="cardprofile-body" style="padding-top:15px;">
+							<div class="row">
+								<div class="col-sm-3">
+									<h6 class="mb-0" style="color:white;">Full Name</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									{{app.user.nom}} {{app.user.prenom}}
+								</div>
+							</div>
+							<hr>
+                            <div class="row">
+								<div class="col-sm-3">
+									<h6 class="mb-0" style="color:white;">Username</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									{{app.user.username}}
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-3">
+									<h6 class="mb-0" style="color:white;">Email</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									{{app.user.email}}
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-3">
+									<h6 class="mb-0"style="color:white;">Phone</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									(+216) {{app.user.getNumTel()}}
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-3">
+									<h6 class="mb-0" style="color:white;">Birth Date</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									{{app.user.getDateNaissance()|date('Y-m-d')}}
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-6">
+                                    <a class="btn btn-info float-xs-right" href="{{ path('app_profile_edit') }}">Edit</a>
+								</div>
+                                {#<div class="col-sm-6">
+                                    <a class="btn btn-info float-right" href="">Change Password</a>
+								</div>#}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <br/>
+    <br/>
+{% endblock %}
+

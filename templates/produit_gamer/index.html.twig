@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+<div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">Liste des produits</h3>
+		<hr/>
+		<br/>
+	</div>
+<br/>
+	<br/>
+<div class="container">
+    	<!-- recherche produit par nom-->
+	     <div class="row">
+	         <div class="col-md-6">
+	             <form action="{{path('app_recherche_produit_gamer_par_nom')}}" method="POST" name="f">
+
+							<div class="input-group">
+								<input type="text" name="nom" class="form-control" placeholder="Recherche par nom">
+								<div class="input-group-append">
+									<button type="submit" style="border-color: white;background-color: white;border-style: solid;">
+										<span class="input-group-text bg-transparent text-primary">
+											<i class="fa fa-search"></i>
+										</span>
+
+									</button>
+								</div>
+							</div>
+
+						</form>
+						</div>
+	    </div>	
+        <br><br>
+			<!-- fin recherche produit par nom-->	
+  <div class="card3">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{path('app_produit_gamer_ajouter')}}"> 
+                    Ajouter produit
+                </a>
+            </div>
+            <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prix</th>
+                                        <th>Image</th>
+                                        <th>actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for prd in listeproduit %}
+                                        <tr>
+                                            <td>{{ prd.nom }}</td>
+                                            <td>{{ prd.prix }} DT</td>
+                                            <td><img src="{{ asset('uploads/images/' ~ prd.image) }}" width="50" height="50" ></td>
+                                           <td>
+                                               
+                                                   <a href="{{ path('app_produit_gamer_modifier', {'id': prd.id}) }}">
+                                                        <button  class='fa fa-edit'></button>
+                                                    </a>
+                                                  <a href ="{{path('app_produit_gamer_remove',{'id':prd.id})}}"> <button  class='fa fa-trash'></button></a> 
+
+                                                  
+                                            </td>
+                                            
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="3">Aucune produit</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                                {{ knp_pagination_render(listeproduit,"pagination/pagination.html.twig") }}
+</div>
+</div>
+</div>
+<br><br><br><br><br>
+{% endblock %}

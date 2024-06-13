@@ -1,0 +1,52 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Liste de categorie{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="text-center mt-5 mb-3">Liste des catégories</h2>
+  <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{path('app_categorie_ajouter')}}"> 
+                    Ajouter Catégorie
+                </a>
+            </div>
+            <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for cat in listecategorie %}
+                                        <tr>
+                                            <td>{{ cat.nom }}</td>
+                                            <td>
+                                               
+                                                   <a href="{{ path('app_categorie_modifier', {'id': cat.id}) }}">
+                                                        <button  class='fas fa-edit'></button>
+                                                    </a>
+                                                    <a href ="{{path('app_categorie_remove',{'id':cat.id})}}"> <button  class='fas fa-trash-alt'></button></a> 
+                                                  
+                                            </td>
+                                            
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="3">Aucune catégorie</td>
+                                        </tr>
+                                    {% endfor %}
+                        
+                                </tbody>
+                            </table>
+                            </br>
+                            </br>
+                            </br>
+                            </br>
+                                        {{ knp_pagination_render(listecategorie,"pagination/pagination.html.twig") }}
+</div>
+</div>
+</div>
+{% endblock %}

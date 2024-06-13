@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+{% block title %}Posts Page!
+{% endblock %}
+{% block body %}
+	<div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">Your Feed</h3>
+		<li class='pull-right'>
+			<a href="{{path('app_post_list')}}" class='btn btn-xs' style="background-color: #C71585;color: aliceblue;">back to list</a>
+		</li>
+		<br/>
+		<hr/>
+		<br/>
+		<br/>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+				<div
+					id="content" class="content content-full-width">
+					<!-- begin profile-content -->
+					<div
+						class="profile-content">
+						<!-- begin tab-content -->
+						<div
+							class="tab-content p-0">
+							<!-- begin #profile-post tab -->
+							<div
+								class="tab-pane fade active show" id="profile-post">
+								<!-- begin timeline -->
+								<ul class="timeline">
+									<li>
+										<!-- begin timeline-icon -->
+										<div class="timeline-icon">
+											<a href="javascript:;">&nbsp;</a>
+										</div>
+										<!-- end timeline-icon -->
+										<!-- begin timeline-body -->
+										<div class="timeline-body">
+											<div class="timeline-header">
+												<span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+												<span class="username">
+													<a href="javascript:;">{{app.user.username}}</a>
+													<small></small>
+												</span>
+												<div class="float-right">
+													{#<a href="{{ path('app_post_modifier', {'id': post.id}) }}">
+														<button style="font-size:24px" class='btn hover fa fa-edit hover'></button>
+													</a>
+													<a href="{{ path('app_post_remove', {'id':post.id}) }}">
+														<button style="font-size:24px" class='btn hover fa fa-trash'></button>
+													</a>#}
+												</div>
+											</div>
+											<div class="timeline-content">
+												<h3>{{ post.title }}</h3>
+												<p>{{ post.description }}</p>
+												<img src="{{asset('uploads/brochures/'~ post.image)}}"></img>
+										</div>
+										<div
+											class="timeline-footer">
+											{% if  like %}
+												<a href="{{path('post_dislike', {'id': post.id})}}" class="m-r-15 text-inverse-lighter">
+													<i class="fa fa-thumbs-down fa-fw fa-lg m-r-3"></i>
+													Dislike
+												</a>
+											{% else %}
+												<a href="{{path('post_like', {'id': post.id})}}" class="m-r-15 text-inverse-lighter">
+													<i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i>
+													Like
+												</a>
+											{% endif %}
+											<a href="javascript:;" class="m-r-15 text-inverse-lighter">
+												<i class="fa fa-comments fa-fw fa-lg m-r-3"></i>
+												{{post.comments|length}}
+												{% if post.comments|length > 1 %}
+													Comments
+												{% else %}
+													Comment
+												{% endif %}
+											</a>
+
+										</div>	
+										{% for comment in post.comments %}
+
+
+											<!-- begin timeline-body -->
+											<div class="">
+												<div class="timeline-header">
+													<span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+													<span class="username">
+														<a href="javascript:;">{{comment.user.username}}</a>
+														<small></small>
+													</span>
+												</div>
+												<div class="timeline-content">
+													<p>
+														{{comment.description}}
+													</p>
+												</div>
+												<div class="timeline-likes"></div>
+
+
+											</div>
+										{% endfor %}
+
+										<div class="timeline-comment-box ">
+											<div class="user mr-2"><img src="https://bootdey.com/img/Content/avatar/avatar3.png"></div>
+											{{ form_start(form) }}
+											<div class="d-flex">
+												<div>
+													<div
+														class="input-group">
+														{# <input type="text" class="form-control rounded-corner" placeholder="Write a comment..."> #}
+														{{ form_widget(form.description,{'attr': {'class': 'form-control rounded-corner'}}) }}
+														<span class="input-group-btn p-l-10">
+															<input type="submit" class="btn btn-primary f-s-12 rounded-corner" type="button"></input>
+													</span>
+												</div>
+											</div>
+										</div>
+										{{ form_end(form) }}
+									</li>
+								</div>
+							</li>
+						</ul>
+						<!-- end timeline-body -->
+					</div>
+					<!-- end timeline -->
+				</div>
+				<!-- end #profile-post tab -->
+			</div>
+			<!-- end tab-content -->
+		</div>
+		<!-- end profile-content -->
+	</div>
+</div></div></div><br/><br/>{% endblock %}

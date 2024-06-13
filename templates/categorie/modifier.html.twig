@@ -1,0 +1,20 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Modifier catégorie{% endblock %}
+
+{% block body %}
+ 
+ <div class="container">
+        <h2 class="text-center mt-5 mb-3">Modifier catégorie</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_categorie_list') }}"> 
+                   Liste des catégories
+                </a>
+            </div>
+            <div class="card-body">
+                 {{ include('categorie/form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

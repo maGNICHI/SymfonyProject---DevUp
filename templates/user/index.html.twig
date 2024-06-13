@@ -1,0 +1,81 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Liste des Gamers{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h2 class="text-center mt-5 mb-3">Liste des gamers</h2>
+		<div class="card">
+			{#<div class="card-header">
+				<a class="btn btn-outline-primary" href="{{ path('app_user_new') }}">
+					Ajouter Gamer
+				</a>
+			</div>#}
+			<div class="card-body" style="overflow-x:auto;overflow-y:auto;height:400px;display:fixe">
+				<table id="example" class="table table-striped table-bordered" >
+					<thead>
+						<tr>
+							<th>Email</th>
+							<th>Username</th>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Num_tel</th>
+							<th>Date_naissance</th>
+							<th>Statut</th>
+							<th>Bloqué</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+							{% if 'ROLE_GAMER' in user.roles %}
+							<tr>
+								<td>{{ user.email }}</td>
+								<td>{{ user.username }}</td>
+								<td>{{ user.nom }}</td>
+								<td>{{ user.prenom }}</td>
+								<td>{{ user.numTel }}</td>
+								<td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+								<td>
+									{% if user.isBanned == false %}
+										<span class="badge badge-secondary">active</span>
+									{% else %}
+										<span class="badge badge-danger">Bloqué</span>
+									{% endif %}
+								</td>
+								<td>
+									<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+										<div class="buttons-preview">
+											{% if user.isBanned %}
+												<a href="{{ path('app_ban', {'id':user.id}) }}" class="btn btn-success">Activé</a>
+											{% else %}
+												<a href="{{ path('app_ban', {'id':user.id}) }}" class="btn btn-danger">Bloqué</a>
+											{% endif %}
+										</div>
+								</td>
+								<td>
+                                    <a href="{{ path('app_user_show', {'id': user.id}) }}">
+										<button class='btn'><i class="fa fa-eye" style="color:white;"></i></button>
+									</a>
+									{#<a href="{{ path('app_user_edit', {'id': user.id}) }}">
+										<button class='btn'><i class="fa fa-edit" style="color:white;"></i></button>
+									</a>#}
+									<a href="{{ path('app_user_delete', {'id': user.id}) }}">
+										<button class="btn"><i class="fa fa-trash" style="color:white;"></i></button>
+									</a>
+								</td>
+							</tr>
+							{% endif %}
+						{% else %}
+							<tr>
+								<td colspan="10">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+

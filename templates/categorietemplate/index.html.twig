@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}listecategorie{% endblock %}
+
+{% block body %}
+<div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">Nos categories</h3>
+		<hr/>
+		<br/>
+	</div>
+<br/>
+
+    <div class="container" >
+	<!-- recherche categorie par nom-->
+	     <div class="row">
+	         <div class="col-md-6">
+	             <form action="{{path('app_recherche_par_nom_du_categorie')}}" method="POST" name="f">
+
+							<div class="input-group">
+								<input type="text" name="nom" class="form-control" placeholder="Recherche par nom">
+								<div class="input-group-append">
+									<button type="submit" style="border-color: white;background-color: white;border-style: solid;">
+										<span class="input-group-text bg-transparent text-primary">
+											<i class="fa fa-search"></i>
+										</span>
+
+									</button>
+								</div>
+							</div>
+
+						</form>
+						</div>
+	    </div>	
+			<!-- fin recherche categorie par nom-->
+	<br/>
+    <div class="row"> 
+		
+	
+	
+     {% for cat in categories %}
+                                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                     <div class="card2 product-item product-item1 border-0 mb-4">
+											
+											<div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+												<h6 class="text-truncate mb-3">{{ cat.nom }}</h6>
+												
+											</div>
+
+
+											<div class="card-footer d-flex justify-content-between bg-light border">
+												<a href="{{ path('app_produit_par_categorie', {'id': cat.id}) }}" class="btn btn-sm text-dark p-0">
+													<i class="fa fa-eye text-primary mr-1"></i>list de produit</a>
+												
+											</div>
+										</div>
+                            
+                                               
+                              </div>
+                                    {% endfor %}
+
+                                    </div>
+
+										 {{ knp_pagination_render(categories,"pagination/pagination.html.twig") }}
+
+                                      </div>
+									    <br/>
+                                          <br/>
+                                              <br/>
+                                                  <br/>
+                                                      <br/>
+{% endblock %}

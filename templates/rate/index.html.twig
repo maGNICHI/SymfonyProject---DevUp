@@ -1,0 +1,43 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Liste des Avis{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="text-center mt-5 mb-3">Liste des Avis</h2>
+  <div class="card">
+           
+            <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Etoile</th>
+                                        <th>Produit</th>
+                                        <th>Commentaire</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for rat in rate %}
+                                        <tr>
+                                            <td>{{ rat.etoile }}</td>
+                                             <td>{{ rat.produit.nom }}</td>
+                                             <td>{{ rat.commentaire }}</td>
+                                             
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="3">Aucune rate</td>
+                                        </tr>
+                                    {% endfor %}
+                        
+                                </tbody>
+                            </table>
+                            </br>
+                            </br>
+                            </br>
+                            </br>
+                                        {{ knp_pagination_render(rate,"pagination/pagination.html.twig") }}
+</div>
+</div>
+</div>
+{% endblock %}

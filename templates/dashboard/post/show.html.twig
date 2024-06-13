@@ -1,0 +1,44 @@
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}detail of post
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+<div class="container" style="padding-top: 120px;">
+	</div>
+		<div class="card">
+			<div class="card-header">
+				<h1>Consult post details</h1>
+			</div>
+			<div class="card-body" style="overflow-x:auto;overflow-y:auto;height:400px;display:fixed">
+				<div class="container">
+
+					<h5>{{ post.title }}</h5>
+
+					<p>{{ post.description }}</p>
+
+					<img src="{{asset('uploads/brochures/'~ post.image)}}"/>
+
+					<div>
+						<div class="container mb-4">
+							<h5>comments:</h5>
+							{% for comment in post.comments %}
+								<div style="display: flex">
+									<img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle" style="width: 50px;margin-right:10px" alt="Avatar"/>
+									<div style="margin-top:7px">
+										{{post.user.username}}
+										<br/>
+										{{comment.description}}
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+						<a class="btn btn-outline-primary" href="{{ path('app_dashboard_posts') }}">back to list</a>
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>
+		{% endblock %}

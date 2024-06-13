@@ -1,0 +1,23 @@
+
+{% extends 'dashboard/index.html.twig' %}
+
+{% block title %}Ajouter Gamer
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h2 class="text-center mt-5 mb-3">Liste des catégories</h2>
+		<div class="card">
+			<div class="card-header">
+				<h1>Editer un utilisateur</h1>
+			</div>
+			<div class="card-body" style="overflow-y:auto;height:400px;display:fixe">
+				{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+				<a href="{{ path('app_user_index') }}">back to list</a>
+
+				{{ include('user/_delete_form.html.twig') }}</div>
+		</div>
+	</div>
+
+{% endblock %}

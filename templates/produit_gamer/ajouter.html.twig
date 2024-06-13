@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter produit{% endblock %}
+
+{% block body %}
+<div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">Ajouter produit</h3>
+		<hr/>
+		<br/>
+<br/>
+      
+        <div class="card3">
+            <div class="p-2">
+            <!-- app_produit_list  bch eraja3ni lil page lawla   -->
+                <a class="btn btn-outline-info float-right" href="{{ path('app_list_produit_gamer') }}"> 
+                   Liste des produits
+                </a>
+            </div>
+            <div class="card-body">
+            <!-- bch nady lil bloq el form mta3 twig form ely bch yet3awed kul chy    -->
+                 {{ include('produit_gamer/form.html.twig') }}
+            </div>
+        </div>
+    </div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

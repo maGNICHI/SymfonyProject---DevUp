@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier produit{% endblock %}
+
+{% block body %}
+<div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">Modifier produit</h3>
+		<hr/>
+		<br/>
+<br/>
+ <div class="container">
+        <div class="card3">
+            <div class="p-2">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_list_produit_gamer') }}"> 
+                   Liste des produits
+                </a>
+            </div>
+            <div class="card-body">
+                 {{ include('produit_gamer/form.html.twig') }}
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}

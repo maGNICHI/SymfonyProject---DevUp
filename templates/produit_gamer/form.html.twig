@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+    <div class="form-group">
+      {{ form_label(form.nom, "Nom") }}
+       {{ form_errors(form.nom) }}
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+       
+           {{ form_label(form.prix, "Prix") }}
+        {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+           {{ form_label(form.description, "Description") }}
+             {{ form_errors(form.nom) }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+        
+                   
+        
+           {{ form_label(form.telContact, "tel Contact") }}
+         {{ form_widget(form.telContact, {'attr': {'class': 'form-control'}}) }}
+      
+      
+          {{ form_label(form.categorie, "Catégorie") }}
+        {{ form_widget(form.categorie, {'attr': {'class': 'form-control'}}) }}
+
+        {{ form_label(form.image, "Image de produit") }}
+        {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+                    <img src="{{ asset('uploads/images/' ~ produit.image) }}" width="300">
+    </div>
+    <button class="btn {{ button_color|default('btn-outline-primary') }}  mt-3">{{ button_label|default('Enregistrer produit') }}</button>
+{{ form_end(form) }}

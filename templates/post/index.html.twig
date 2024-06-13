@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+{% block title %}Posts Page!
+{% endblock %}
+
+{% block body %}
+	<div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">Your Feed</h3>
+		<hr/>
+		<br/>
+		<div class="container bootstrap snippets bootdey">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8 col-xs-12">
+					<div class="well well-sm well-social-post">
+						<form>
+							<ul class="list-inline" id='list_PostActions'>
+								<li class='active'>
+									<a href="{{path('app_post_ajouter')}}" style="color: aliceblue;">Update status</a>
+								</li>
+							</ul>
+							<ul class='list-inline post-actions'>
+								<li class='pull-right'>
+									<a href="{{path('app_post_ajouter')}}" class='btn btn-xs' style="background-color: #C71585;color: aliceblue;">Post</a>
+								</li>
+							</ul>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+				<div
+					id="content" class="content content-full-width">
+					<!-- begin profile-content -->
+					<div
+						class="profile-content">
+						<!-- begin tab-content -->
+						<div
+							class="tab-content p-0">
+							<!-- begin #profile-post tab -->
+							{% for cat in listepost %}			
+								<div
+									class="tab-pane fade active show" id="profile-post">
+									<!-- begin timeline -->
+									<ul class="timeline">
+										<li>
+											<!-- begin timeline-icon -->
+											<div class="timeline-icon">
+												<a href="javascript:;">&nbsp;</a>
+											</div>
+											<!-- end timeline-icon -->
+											<!-- begin timeline-body -->
+											<div class="timeline-body">
+												<div class="timeline-header">
+													<span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+													<span
+														class="username">
+														<a href="javascript:;">{{app.user.username}}</a>
+														<small></small>
+													</span>
+													<div class="float-right">
+														<a href="{{ path('app_post_modifier', {'id': cat.id}) }}">
+															<button style="font-size:24px" class='btn hover fa fa-edit hover'></button>
+														</a>
+														<a href="{{path('app_post_remove', {'id':cat.id})}}">
+															<button style="font-size:24px" class='btn hover fa fa-trash'></button>
+														</a>
+
+													</div>
+												</div>
+												<div class="timeline-content">
+													<h3>{{ cat.title }}</h3>
+													<p>{{ cat.description }}</p>
+													<img src="{{asset('uploads/brochures/'~ cat.image)}}"></img>
+											</div>
+											<div class="timeline-footer">
+												<a href="{{path('post_like',{'id':cat.id})}}" class="m-r-15 text-inverse-lighter">
+													<i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i>
+													{{cat.likes|length}}
+													{% if cat.likes|length > 1 %}
+														Likes
+													{% else %}
+														Like
+													{% endif %}
+												</a>
+												<a href="{{path('app_post_afficher',{'id':cat.id})}}" class="m-r-15 text-inverse-lighter">
+													<i class="fa fa-comments fa-fw fa-lg m-r-3"></i>
+													{{cat.comments|length}}
+													{% if cat.comments|length > 1 %}
+														Comments
+													{% else %}
+														Comment
+													{% endif %}
+												</a>
+											</div>
+											{% for comment in cat.comments %}
+												<!-- begin timeline-icon -->
+
+												<!-- end timeline-icon -->
+												<!-- begin timeline-body -->
+													<div class=""> <div class="timeline-header">
+														<span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></span>
+														<span class="username">
+															<a href="javascript:;">{{cat.user.username}}</a>
+															<small></small>
+														</span>
+													</div>
+													<div class="timeline-content">
+														<p>
+															{{comment.description}}
+														</p>
+													</div>
+
+												</div>
+											{% endfor %}
+										</li>
+									</div>
+								</li>
+							</ul>
+							<!-- end timeline-body -->
+						</div>
+					{% endfor %}
+					<!-- end timeline -->
+				</div>
+				<!-- end #profile-post tab -->
+			</div>
+			<!-- end tab-content -->
+		</div>
+		<!-- end profile-content -->
+	</div>
+</div></div><br/><br/>{% endblock %}

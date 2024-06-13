@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block title %}Update Profile Page{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">{{app.user.username}} Profile</h3>
+		<hr/>
+		<br/>
+	</div>
+	<div class="container">
+		<div class="main-body">
+			<div class="row gutters-sm">
+				<div class="col-md-4 mb-3 NameP">
+					<div class="cardprofile">
+						<div class="cardprofile-body">
+							<div class="d-flex flex-column align-items-center text-center" style="padding-top:25px;">
+								<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+								<div class="mt-3">
+									<h4 style="color:white;">{{app.user.username}}</h4>
+									<p class="text-secondary mb-1">{{app.user.nom}} {{app.user.prenom}}</p>
+									<p class="text-muted font-size-sm">Role: Gamer</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="col-md-1"></div>
+				<div class="col-md-7 ProfilG">
+					<div class="cardprofile mb-3">
+						<div class="cardprofile-body" style="padding-top:15px;">
+							{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+{% endblock %}

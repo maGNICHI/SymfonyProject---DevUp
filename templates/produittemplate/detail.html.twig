@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+ <div class="container" style="padding-top: 250px;">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h3 style="color: aliceblue;">Detail Produit</h3>
+		<hr/>
+		<br/>
+	</div>
+<div class="container">
+  <div class="row">
+
+            <div class="col-md-5">
+            <img  src="{{asset('uploads/images/' ~ produitdetail.image)}}">
+            </div>
+            <div class="col-md-7">
+
+                <h3 style="color:white"> Nom:{{produitdetail.nom}}</h3>
+                <br>
+            
+            <h4 style="color:white"> Prix: {{produitdetail.prix}} Dt</h4>
+             <h4 style="color:white">Tel Contact:  {{produitdetail.TelContact}} </h4>
+            <div class="pt-5">
+            <a href="{{path('app_panier_ajouter',{'id': produitdetail.id})}}" class="btn" style="background-color:#ef1e14;color:#fff;" >
+
+            <i class="fa fa-shopping-cart" style="color:#fff;" ></i>
+            Ajouter au panier</a>
+            </div>
+
+            </div>
+
+    </div>
+</div>
+<br>
+  <div class="container">
+     
+            <h5 style="color:white">Description du produit</h5>
+            <p style="color:white">{{produitdetail.description}}</p>
+
+            <br/>
+           <h5 style="color:white">Avis</h5>
+           {{ form_start(form) }}
+            <div class="form-group" style="color:while">
+            <!--hakum les etoile -->
+            <div class="stars" style="color:white">
+              <i class="fa fa-star" ></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star" ></i>
+              <i class="fa fa-star" ></i>
+              <i class="fa fa-star"></i>
+            </div>
+              <div style="color:white">    {{ form_widget(form.etoile) }} </div>
+              <div style="color:white">      {{ form_label(form.commentaire, "Commentaire") }}</div>
+                  {{ form_widget(form.commentaire, {'attr': {'class': 'form-control'}}) }}
+              
+              
+              
+            </div>
+    <button class="btn" style="background-color:#ef1e14;color:#fff;" {{ button_color|default('btn-outline-primary') }}  mt-3>{{ button_label|default('Enregistrer Avis') }}</button>
+{{ form_end(form) }}
+      
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+{% endblock %}

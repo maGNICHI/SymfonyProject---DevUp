@@ -1,0 +1,25 @@
+{% extends 'post/index.html.twig' %}
+
+{% block title %}Modifier post
+{% endblock %}
+
+{% block body %}
+<div class="container" style="padding-top: 120px;">
+	</div>
+	<div class="container">
+		<img class="bg" src="{{asset('img/wallpaper.jpg')}}" alt="">
+		<h2 class="text-center mt-5 mb-5"style="color: #FF00FF">Modifier post</h2>
+		<div class="card">
+			<div class="card-header">
+				<a class="btn btn-outline-info float-right" href="{{ path('app_post_list') }}">
+					Liste des posts
+				</a>
+			</div>
+			<div class="card-body">
+				{{ include('post/form.html.twig') }}
+			</div>
+		</div>
+	</div>
+	<div class="container" style="padding-top: 120px;">
+	</div>
+{% endblock %}
